@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Permission for screen pinning (task locking) -->
+    <uses-permission android:name="android.permission.MANAGE_DEVICE_ADMINS" />
+
     <application
         android:name=".MyndfulnessApp"
         android:allowBackup="true"
