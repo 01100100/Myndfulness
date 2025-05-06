@@ -19,6 +19,11 @@ interface DeviceLocker {
      * Unlocks the device or restores normal screen timeout behavior
      */
     fun unlockDevice()
+    
+    /**
+     * Updates the session active state for platform-specific implementations
+     */
+    fun setSessionActive(active: Boolean)
 }
 
 /**

@@ -31,17 +31,27 @@ fun App() {
     // Timer effect
     LaunchedEffect(isSessionActive) {
         if (isSessionActive) {
+            // Update session state and lock device
+            deviceLocker.setSessionActive(true)
             deviceLocker.lockDevice()
+            
+            // Count down timer
             while (timeLeft > 0 && isSessionActive) {
                 delay(1000)
                 timeLeft--
             }
+            
+            // Session complete or interrupted
             if (timeLeft == 0) {
                 isSessionActive = false
+                deviceLocker.setSessionActive(false)
                 deviceLocker.unlockDevice()
             }
         } else {
+            // Update session state and unlock device
+            deviceLocker.setSessionActive(false)
             deviceLocker.unlockDevice()
+            
             timeLeft = 20 * 60
         }
     }

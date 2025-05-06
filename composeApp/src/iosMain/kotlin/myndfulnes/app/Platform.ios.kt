@@ -16,6 +16,14 @@ actual fun getPlatform(): Platform = IOSPlatform()
  * so we prevent the screen from dimming/turning off by disabling the idle timer
  */
 class IOSDeviceLocker : DeviceLocker {
+    // Track the session state in iOS
+    private var isSessionActive = false
+    
+    override fun setSessionActive(active: Boolean) {
+        // Store session state locally
+        isSessionActive = active
+    }
+    
     override fun lockDevice() {
         // Prevent the screen from turning off by disabling the idle timer
         UIApplication.sharedApplication.setIdleTimerDisabled(true)
